@@ -129,5 +129,7 @@ public class activity_User extends AppCompatActivity implements ListView.OnItemC
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int pos, long id) {
         Toast.makeText(this, user[pos], Toast.LENGTH_SHORT).show();
+
+
     }
 }

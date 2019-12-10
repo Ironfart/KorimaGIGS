@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                 User user = dataSnapshot.getValue(User.class);
                 if (user.getType().equals("User")) {
                     Toast.makeText(MainActivity.this, "It's a User", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(getApplicationContext(), activity_User.class));
+                    startActivity(new Intent(getApplicationContext(), menu.class));
                     finish();
 
                 } else if (user.getType().equals("Artist")) {
