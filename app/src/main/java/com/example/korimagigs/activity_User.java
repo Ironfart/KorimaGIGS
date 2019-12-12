@@ -35,12 +35,12 @@ public class activity_User extends AppCompatActivity implements ListView.OnItemC
     FirebaseUser firebaseUser;
     DatabaseReference reference;
 
-    Intent inImg;
+    Intent inImg, inLocal, inArtist, inPref;
     private static final int SELECT_PICTURE = 100;
 
     String[] user = {
-            "Locales",
             "Artistas",
+            "Locales",
             "Preferencias",
 
     };
@@ -129,5 +129,19 @@ public class activity_User extends AppCompatActivity implements ListView.OnItemC
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int pos, long id) {
         Toast.makeText(this, user[pos], Toast.LENGTH_SHORT).show();
+        switch (pos) {
+            case 0:
+                inArtist = new Intent(activity_User.this, ArtistDisp.class);
+                startActivity(inArtist);
+                break;
+            case 1:
+                inLocal = new Intent(activity_User.this, LocalActivity.class);
+                startActivity(inLocal);
+                break;
+            case 2:
+                inPref = new Intent(activity_User.this, PrefActivity.class);
+                startActivity(inPref);
+                break;
+        }
     }
 }
