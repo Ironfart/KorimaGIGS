@@ -16,7 +16,9 @@
         <activity
             android:name=".PrefActivity"
             android:theme="@style/listItem" />
-        <activity android:name=".ArtistDisp" />
+        <activity
+            android:name=".ArtistDisp"
+            android:theme="@style/listItem"/>
         <activity android:name=".LocalActivity" />
         <activity
             android:name=".activity_Artist"

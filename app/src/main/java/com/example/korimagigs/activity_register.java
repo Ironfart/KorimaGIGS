@@ -33,7 +33,7 @@ public class activity_register extends AppCompatActivity implements RadioGroup.O
     FirebaseAuth auth;
     DatabaseReference reference;
     String sTipoUsuario = "User";
-    String dbType;
+    String dbType, genre;
     int userType;
 
     @Override
@@ -83,26 +83,50 @@ public class activity_register extends AppCompatActivity implements RadioGroup.O
                             assert firebaseuser != null;
                             String userid = firebaseuser.getUid();
 
-                            reference = FirebaseDatabase.getInstance().getReference("Users").child(userid);
-                            HashMap<String, String> hashMap = new HashMap<>();
-                            hashMap.put("id", userid);
-                            hashMap.put("username", sUsername);
-                            hashMap.put("type", sTipoUsuario);
-                            hashMap.put("imageURL", "default");
+                            reference = FirebaseDatabase.getInstance().getReference("Users/" + dbType).child(userid);
 
-                            reference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if (task.isSuccessful()) {
-                                        Intent intento = new Intent(getApplicationContext(), MainActivity.class);
-                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                        startActivity(intento);
-                                        finish();
-                                        Toast.makeText(activity_register.this, "User Registered", Toast.LENGTH_SHORT).show();
+                            if (dbType == "Grupis") {
+                                HashMap<String, String> hashMap = new HashMap<>();
+                                hashMap.put("id", userid);
+                                hashMap.put("username", sUsername);
+                                hashMap.put("imageURL", "default");
 
+                                reference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()) {
+                                            Intent intento = new Intent(getApplicationContext(), MainActivity.class);
+                                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                            startActivity(intento);
+                                            finish();
+                                            Toast.makeText(activity_register.this, "User Registered", Toast.LENGTH_SHORT).show();
+
+                                        }
                                     }
-                                }
-                            });
+                                });
+                            } else if (dbType == "Artists") {
+                                HashMap<String, String> hashMap = new HashMap<>();
+                                hashMap.put("id", userid);
+                                hashMap.put("username", sUsername);
+                                hashMap.put("imageURL", "default");
+                                hashMap.put("genre ", genre);
+
+                                reference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()) {
+                                            Intent intento = new Intent(getApplicationContext(), MainActivity.class);
+                                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                            startActivity(intento);
+                                            finish();
+                                            Toast.makeText(activity_register.this, "User Registered", Toast.LENGTH_SHORT).show();
+
+                                        }
+                                    }
+                                });
+                            }
+
+
                         } else {
                             Toast.makeText(activity_register.this, "Can't register with this email or password", Toast.LENGTH_SHORT).show();
                         }
@@ -116,13 +140,14 @@ public class activity_register extends AppCompatActivity implements RadioGroup.O
     public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
 
         if (checkedId == R.id.rdBtnUser) {
-            sTipoUsuario = "User";
-            dbType = "Users";
+            sTipoUsuario = "Grupi";
+            dbType = "Grupis";
             userType = 0;
             Toast.makeText(this, "You can only see events and artists", Toast.LENGTH_LONG).show();
         } else if (checkedId == R.id.rdBtnArtist) {
             sTipoUsuario = "Artist";
             dbType = "Artists";
+            genre = "rock";
             userType = 1;
             Toast.makeText(this, "You can create events and custom your exposure to the users", Toast.LENGTH_LONG).show();
         }

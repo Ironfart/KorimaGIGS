@@ -84,7 +84,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClick(View v) {
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        reference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
+
+        reference = FirebaseDatabase.getInstance().getReference("Users/").child(firebaseUser.getUid());
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

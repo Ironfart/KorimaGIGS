@@ -7,8 +7,24 @@
     android:orientation="vertical"
     tools:context=".ArtistDisp">
 
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Artistas" />
+
+    <Button
+        android:id="@+id/btnMostrar"
+        android:layout_width="262dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Button" />
+
     <ListView
-        android:id="@+id/lsArtist"
+        android:id="@+id/lstVwArtistas"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="555dp"
+        android:layout_weight="1" />
+
 </LinearLayout>
