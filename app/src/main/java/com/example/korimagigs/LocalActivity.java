@@ -11,4 +11,6 @@ public class LocalActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_local);
     }
+
+
 }
