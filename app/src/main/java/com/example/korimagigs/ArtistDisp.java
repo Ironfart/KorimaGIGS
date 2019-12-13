@@ -4,95 +4,74 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.graphics.PostProcessor;
+import android.content.Intent;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
-import com.example.korimagigs.Model.Artist;
-import com.google.firebase.FirebaseError;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 
-import org.json.JSONArray;
 
 import java.util.ArrayList;
 
-public class ArtistDisp extends AppCompatActivity {
-ListView lstVwArt;
-private DatabaseReference referenceD, reference;
-private ArrayList<String> arrayList = new ArrayList<>();
-private ArrayAdapter<String> adapter;
+public class ArtistDisp extends AppCompatActivity implements ListView.OnItemClickListener {
+    ListView lstVwArt;
+    private DatabaseReference referenceD;
+    private ArrayList<String> arrayList = new ArrayList<>();
+    private ArrayAdapter<String> adapter;
+    Intent in1,in2,in3,in4;
 
-private Button btn;
+    String[]user = {
+            "Khalighula",
+            "Metallica",
+            "Caifanes",
+            "Ajsdkjfc"
+
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        referenceD=FirebaseDatabase.getInstance().getReference("Artists").child("name");
-       referenceD.addListenerForSingleValueEvent(new ValueEventListener() {
-           @Override
-           public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+        setContentView(R.layout.activity_artist_disp);
 
-           }
-
-           @Override
-           public void onCancelled(@NonNull DatabaseError databaseError) {
-
-           }
-       });
-
-        btn=findViewById(R.id.btnMostrar);
         lstVwArt = findViewById(R.id.lstVwArtistas);
 
-        lstVwArt.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList));
 
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        lstVwArt.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, user));
+        lstVwArt.setOnItemClickListener(this);
 
-            }
-        });
-        referenceD.addChildEventListener(new ChildEventListener() {
 
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                String string=dataSnapshot.getValue(String.class);
-                arrayList.add(string);
-                adapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-                String string=dataSnapshot.getValue(String.class);
-                arrayList.remove(string);
-                adapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-        }
     }
 
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        Toast.makeText(this, "asd", Toast.LENGTH_SHORT).show();
+        switch (i) {
+            case 0:
+                in1 = new Intent(ArtistDisp.this, verDetalles.class);
+                startActivity(in1);
+                break;
+            case 1:
+                in2 = new Intent(ArtistDisp.this, verDetalles.class);
+                startActivity(in2);
+                break;
+            case 2:
+                in3 = new Intent(ArtistDisp.this, verDetalles.class);
+                startActivity(in3);
+                break;
+            case 3:
+                in4 = new Intent(ArtistDisp.this, verDetalles.class);
+                startActivity(in4);
 
+                break;
+        }
+    }
+}

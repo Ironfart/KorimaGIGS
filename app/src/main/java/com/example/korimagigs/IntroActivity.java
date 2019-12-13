@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 public class IntroActivity extends AppCompatActivity {
 
@@ -20,6 +21,7 @@ public class IntroActivity extends AppCompatActivity {
         super.onDestroy();
         Log.wtf("Intro App", "Culminada");
         tHilo.interrupt();
+        //Toast.makeText(this, );
     }
 
     @Override

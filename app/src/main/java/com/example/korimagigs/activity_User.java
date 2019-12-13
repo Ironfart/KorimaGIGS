@@ -35,14 +35,14 @@ public class activity_User extends AppCompatActivity implements ListView.OnItemC
     FirebaseUser firebaseUser;
     DatabaseReference reference;
 
-    Intent inImg, inLocal, inArtist, inPref;
+    Intent inImg, inLocal, inArtist, inPref, inMapa;
     private static final int SELECT_PICTURE = 100;
 
     String[] user = {
             "Artistas",
             "Locales",
             "Preferencias",
-
+            "Mapa"
     };
 
     @Override
@@ -142,6 +142,10 @@ public class activity_User extends AppCompatActivity implements ListView.OnItemC
                 inPref = new Intent(activity_User.this, PrefActivity.class);
                 startActivity(inPref);
                 break;
+           /* case 3:
+                inPref = new Intent(activity_User.this, mapa.class);
+                startActivity(inMapa);
+                break;*/
         }
     }
 }
