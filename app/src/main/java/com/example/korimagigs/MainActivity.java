@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     TextView txtVwTypeUser;
     ImageView imgVwImagen;
     FirebaseUser firebaseUser;
-    DatabaseReference reference;
+    DatabaseReference reference, referenceArt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
-
+        //referenceArt=FirebaseDatabase.getInstance().getReference("Artists").child(firebaseUser.getUid());
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
