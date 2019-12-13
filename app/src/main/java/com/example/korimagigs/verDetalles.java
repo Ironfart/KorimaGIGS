@@ -14,7 +14,5 @@ TextView txtVwNombreArt, txtVwGen;
         txtVwNombreArt=findViewById(R.id.txtNombreArt);
         txtVwGen=findViewById(R.id.txtVwGen);
 
-        txtVwNombreArt.setText("");
-        txtVwGen.setText("");
     }
 }
