@@ -14,9 +14,8 @@ public class PrefActivity extends AppCompatActivity implements ListView.OnItemCl
     ListView lsPref;
 
     String[] taste = {
-            "Artistas",
             "Locales",
-            "Preferencias",
+            "Géneros",
 
     };
 

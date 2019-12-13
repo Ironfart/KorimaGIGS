@@ -13,7 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".PrefActivity"></activity>
+        <activity
+            android:name=".PrefActivity"
+            android:theme="@style/listItem" />
         <activity android:name=".ArtistDisp" />
         <activity android:name=".LocalActivity" />
         <activity

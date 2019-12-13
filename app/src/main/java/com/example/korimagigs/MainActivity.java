@@ -98,38 +98,6 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "It's an Artist", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(getApplicationContext(), activity_Artist.class));
                     finish();
-
-
-
-                } else if (user.getType().equals("Unknown")) {
-                    Toast.makeText(MainActivity.this, "It's a Unknown", Toast.LENGTH_SHORT).show();
-
-                    new AlertDialog.Builder(MainActivity.this)
-                            .setTitle("Standar Dialog").setMessage("Select an User")
-                            .setPositiveButton("User", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    //ACCION
-                                    startActivity(new Intent(getApplicationContext(), activity_User.class));
-                                    finish();
-                                }
-                            })
-                            .setNegativeButton("Artist", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    //ACCION
-                                    startActivity(new Intent(getApplicationContext(), activity_Artist.class));
-                                    finish();
-                                }
-                            })
-                            .setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    //ACCION
-                                    Toast.makeText(getApplicationContext(), "Cancelled", Toast.LENGTH_SHORT).show();
-                                }
-                            }).create().show();
-
                 }
 
             }

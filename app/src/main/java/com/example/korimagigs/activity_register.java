@@ -33,6 +33,8 @@ public class activity_register extends AppCompatActivity implements RadioGroup.O
     FirebaseAuth auth;
     DatabaseReference reference;
     String sTipoUsuario = "User";
+    String dbType;
+    int userType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,13 +117,14 @@ public class activity_register extends AppCompatActivity implements RadioGroup.O
 
         if (checkedId == R.id.rdBtnUser) {
             sTipoUsuario = "User";
+            dbType = "Users";
+            userType = 0;
             Toast.makeText(this, "You can only see events and artists", Toast.LENGTH_LONG).show();
         } else if (checkedId == R.id.rdBtnArtist) {
             sTipoUsuario = "Artist";
+            dbType = "Artists";
+            userType = 1;
             Toast.makeText(this, "You can create events and custom your exposure to the users", Toast.LENGTH_LONG).show();
-        } else if (checkedId == R.id.rdBtnUkn) {
-            sTipoUsuario = "Unknown";
-            Toast.makeText(this, "You can either see events or create 'em", Toast.LENGTH_LONG).show();
         }
         
     }

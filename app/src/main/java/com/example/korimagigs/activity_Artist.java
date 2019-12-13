@@ -5,9 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -23,12 +26,18 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.util.HashMap;
+
 public class activity_Artist extends AppCompatActivity {
 
     TextView txtArtist, txtGenre, txtLinks;
     ImageView imgArtist;
     FirebaseUser firebaseUser;
     DatabaseReference reference;
+    String imgDecodableString;
 
     Intent inImg;
     private static final int SELECT_PICTURE = 100;
@@ -91,11 +100,30 @@ public class activity_Artist extends AppCompatActivity {
 
                     imgArtist.setImageURI(selectedImageUri);
 
+                    final InputStream imgStream;
+                    try {
+                        imgStream = getContentResolver().openInputStream(selectedImageUri);
+                        final Bitmap selectedImg = BitmapFactory.decodeStream(imgStream);
+                        imgDecodableString = encodeImage(selectedImg);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+
                     // Aqui se manda a BD
+
 
                 }
             }
         }
+    }
+
+    private String encodeImage(Bitmap bm) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bm.compress(Bitmap.CompressFormat.JPEG,100,baos);
+        byte[] b = baos.toByteArray();
+        imgDecodableString = Base64.encodeToString(b, Base64.DEFAULT);
+
+        return imgDecodableString;
     }
 
     /* obtener la ubicaión real del uri */
