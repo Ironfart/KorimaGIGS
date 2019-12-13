@@ -142,10 +142,10 @@ public class activity_User extends AppCompatActivity implements ListView.OnItemC
                 inPref = new Intent(activity_User.this, PrefActivity.class);
                 startActivity(inPref);
                 break;
-           /* case 3:
+           case 3:
                 inPref = new Intent(activity_User.this, mapa.class);
                 startActivity(inMapa);
-                break;*/
+                break;
         }
     }
 }
